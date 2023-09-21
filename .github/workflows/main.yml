@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run domain resolver script
-        run: bash ../dns_resolver.sh
+        run: bash ./dns_resolver.sh
