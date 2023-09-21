@@ -1,4 +1,4 @@
-name: DNS Resolution
+name: Domain Resolution
 
 on:
   push:
@@ -6,20 +6,12 @@ on:
       - main
 
 jobs:
-  resolve_dns:
+  resolve_domain:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Send DNS resolution request
-        id: curl
-        uses: wei/curl@v1
-        with:
-          args: -X GET https://dns.google/resolve?name=cc220ed01053.sn.mynetname.net&type=A
-
-
-      - name: Display DNS resolution result
-        run: |
-          echo ${{ steps.curl.outputs.response }} # Sử dụng id để truy cập kết quả
+      - name: Run domain resolver script
+        run: ./domain_resolver.sh
