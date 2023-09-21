@@ -17,7 +17,7 @@ def resolve_domain(domain):
         return None
 
 # Domain name to resolve
-domain = 'cc220ed01053.sn.mynetname.net'
+domain = 'userxvpn2409.ddns.net'
 
 # Resolve domain
 ip_address = resolve_domain(domain)
