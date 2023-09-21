@@ -1,7 +1,9 @@
 name: Resolve Domain IP
 
 on:
-  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - cloudflare
   push:
     branches:
       - main
