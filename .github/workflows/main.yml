@@ -1,4 +1,4 @@
-name: Domain Resolution
+name: Update Location
 
 on:
   push:
@@ -6,12 +6,18 @@ on:
       - main
 
 jobs:
-  resolve_domain:
+  update:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run domain resolver script
-        run: bash ./dns_resolver.sh
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+
+      - name: Install dependencies
+        run: composer install --no-dev --ignore-platform-reqs
+
+      - name: Run location-update.php
+        run: php location-update.php
