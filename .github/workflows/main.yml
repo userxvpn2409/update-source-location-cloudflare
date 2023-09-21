@@ -1,14 +1,28 @@
-name: Run PHP script
+name: Resolve Domain IP
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  run-script:
+  resolve-domain-ip:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: nanasess/setup-php@master
-        with:
-          php-version: '7.4'
-          extensions: curl
-      - run: php $GITHUB_WORKSPACE/location-update.php
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run Python script
+      run: python your_script.py
