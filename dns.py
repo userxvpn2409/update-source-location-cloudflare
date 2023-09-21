@@ -33,7 +33,7 @@ account_id = '09e1ce4beeee721da60efa2c06287551'
 account_email = 'userxvpn2409@gmail.com'
 api_token = '181af2890ac1bea1646afc0cf12a529fd10d8'
 uuid = 'c792b4647b374c618db91abd2d17d323'
-ip = up_address
+ip = ip_address
 
 url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/locations/{uuid}"
 
