@@ -25,4 +25,4 @@ jobs:
       run: pip install requests
 
     - name: Run Python script
-      run: python dns.py
+      run: python update-location.py
