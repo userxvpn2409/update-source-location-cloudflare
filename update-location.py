@@ -35,6 +35,27 @@ api_token = '181af2890ac1bea1646afc0cf12a529fd10d8'
 uuid = 'c792b4647b374c618db91abd2d17d323'
 ip = ip_address + '/32'
 
+#get-location-id
+url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/locations"
+
+headers = {
+    'Authorization': f'Bearer {api_token}',
+    'Content-Type': 'application/json',
+    'X-Auth-Email': account_email,
+    'X-Auth-Key': api_token
+}
+
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    print(response.json())
+else:
+    print(f"Request failed with status code {response.status_code}")
+    print(response.text)
+
+
+
+#update-location
 url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/gateway/locations/{uuid}"
 
 headers = {
