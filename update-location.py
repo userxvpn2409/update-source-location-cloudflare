@@ -84,9 +84,24 @@ payload = {
 }
 
 response = requests.put(url, json=payload, headers=headers)
-
 if response.status_code == 200:
-    print(response.json())
+    data = response.json()
+    result = data['result']
+    if result:
+        location_id = result['id']
+        name = result['name']
+        ip = result['ip']
+        created_at = result['created_at']
+        updated_at = result['updated_at']
+        
+        print("Update location successful:")
+        print(f"Location ID: {location_id}")
+        print(f"Name: {name}")
+        print(f"IP: {ip}")
+        print(f"Created At: {created_at}")
+        print(f"Updated At: {updated_at}")
+    else:
+        print("No location data found.")
 else:
     print(f"Request failed with status code {response.status_code}")
     print(response.text)
