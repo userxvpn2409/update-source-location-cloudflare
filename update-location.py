@@ -48,7 +48,14 @@ headers = {
 response = requests.get(url, headers=headers)
 
 if response.status_code == 200:
-    print(response.json())
+    data = response.json()
+    result = data['result']
+    if result:
+        location = result[0]
+        location_id = location['id']
+        print(f"The location ID is: {location_id}")
+    else:
+        print("No locations found.")
 else:
     print(f"Request failed with status code {response.status_code}")
     print(response.text)
