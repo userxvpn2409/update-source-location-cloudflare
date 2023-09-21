@@ -14,11 +14,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Send DNS resolution request
-        uses: curl-actions/http-request@v1.1.2
+        id: curl # Thêm id cho step này
+        uses: wei/curl@v1 # Sử dụng action wei/curl
         with:
           url: 'https://dns.google/resolve?name=cc220ed01053.sn.mynetname.net&type=A'
           method: GET
 
       - name: Display DNS resolution result
         run: |
-          echo ${{ steps.send_dns_resolution_request.outputs.response }}
+          echo ${{ steps.curl.outputs.response }} # Sử dụng id để truy cập kết quả
