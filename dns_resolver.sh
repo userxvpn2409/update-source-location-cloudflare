@@ -6,6 +6,8 @@ URL="https://dns.google/resolve?name=$DOMAIN&type=A"
 # Sử dụng cURL để gửi yêu cầu HTTP và lấy kết quả trả về
 response=$(curl -s "$URL")
 
-# Hiển thị kết quả
-echo "Kết quả phân giải tên miền $DOMAIN:"
-echo "$response"
+# Lấy địa chỉ IP từ kết quả phân giải tên miền
+ip=$(echo "$response" | grep -oE '"data":"([^"]+)"' | awk -F'"' '{print $4}')
+
+# In địa chỉ IP
+echo "Địa chỉ IP: $ip"
