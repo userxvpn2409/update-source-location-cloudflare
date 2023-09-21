@@ -1,0 +1,25 @@
+name: DNS Resolution
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  resolve_dns:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Send DNS resolution request
+        uses: dorny/paths-filter@v2
+        with:
+          filters: dns.txt
+        env:
+          DNS_URL: 'https://dns.google/query?name=cc220ed01053.sn.mynetname.net'
+
+      - name: Display DNS resolution result
+        run: |
+          echo ${{ steps.send_dns_resolution_request.outputs.stdout }}
