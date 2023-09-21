@@ -90,7 +90,8 @@ if response.status_code == 200:
     if result:
         location_id = result['id']
         name = result['name']
-        ip = result['ip']
+        ip_network = result['networks'][0]['network']
+        ip, subnet = ip_network.split('/')
         created_at = result['created_at']
         updated_at = result['updated_at']
         
@@ -98,6 +99,7 @@ if response.status_code == 200:
         print(f"Location ID: {location_id}")
         print(f"Name: {name}")
         print(f"IP: {ip}")
+        print(f"Subnet: {subnet}")
         print(f"Created At: {created_at}")
         print(f"Updated At: {updated_at}")
     else:
