@@ -1,23 +1,14 @@
-name: Update Location
+name: Run PHP script
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  update:
+  run-script:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-
-      - name: Install dependencies
-        run: composer install --no-dev --ignore-platform-reqs
-
-      - name: Run location-update.php
-        run: php location-update.php
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-php@master
+        with:
+          php-version: '7.4'
+          extensions: curl
+      - run: php $GITHUB_WORKSPACE/location-update.php
